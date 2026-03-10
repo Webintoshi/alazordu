@@ -41,6 +41,22 @@ export default async function RootLayout(props: any) {
 
   return (
     <html lang={locale} suppressHydrationWarning>
+      <head>
+        {/* GitHub Pages SPA redirect handler */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function() {
+                var redirect = sessionStorage.redirect;
+                delete sessionStorage.redirect;
+                if (redirect && redirect !== location.pathname + location.search + location.hash) {
+                  history.replaceState(null, null, redirect);
+                }
+              })();
+            `,
+          }}
+        />
+      </head>
       <body className={`${dmSans.variable} ${crimsonPro.variable} antialiased`}>
         <I18nProvider initialLocale={locale as 'tr' | 'en'}>
           <ThemeProvider>
