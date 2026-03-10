@@ -1,0 +1,9 @@
+import { ReactNode } from 'react';
+
+export default function LocaleLayout({ children }: { children: ReactNode }) {
+  return children;
+}
+
+export function generateStaticParams() {
+  return [{ locale: 'tr' }, { locale: 'en' }];
+}

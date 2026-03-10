@@ -1,0 +1,136 @@
+{
+  "metadata": {
+    "title": "Alaz Restoran | Premium Gastronomi Deneyimi",
+    "description": "Eşsiz lezzetler, zarif ambiyans ve unutulmaz anlar. Alaz Restoran'da gastronomiyi sanata dönüştürüyoruz."
+  },
+  "nav": {
+    "restaurant": "Restoran",
+    "hotel": "Otel",
+    "gallery": "Galeri",
+    "contact": "İletişim",
+    "menu": "Menü",
+    "about": "Hakkımızda"
+  },
+  "hero": {
+    "title": "ALAZ",
+    "subtitle": "Restoran",
+    "tagline": "Ateşin sıcaklığı, lezzetin şiiri",
+    "scroll": "Kaydır"
+  },
+  "about": {
+    "eyebrow": "Hikayemiz",
+    "title": "Ordu'nun Kalbinde Tarihi Bir Konağın Hikayesi",
+    "description": "Ordu'yu kalbinde yer alan bu tarihi konak, geçmişin sessiz tanığı olarak 1900'lü yılların başında Karadeniz'in zarif ahşap işçiliğiyle inşa edilmiştir. Zaferimilli Mahallesi'nin adını aldığı milli mücadele dönemine şahitlik etmiş, o yıllarda bölge halkının buluşma noktalarından biri olmuştur.",
+    "description2": "Konağın ahşap kirişleri, taş temeli ve el işçiliğiyle oyulmuş kapıları, Ordu'nun geleneksel mimarisini bugüne taşıyan birer sanat eseridir. Zamanında bir tüccar ailesinin evi olarak kullanılan yapı, yıllar içinde titizlikle restore edilerek özgün ruhu korunmuş; bugün ise misafirlerine hem tarihi sıcaklığını hem de lezzetin zarafetini sunan özel bir mekân haline gelmiştir. Bu bina yalnızca duvarlardan ibaret değildir; her köşesi geçmişin hikâyelerini fısıldar. Burada kahve yudumlarken ya da yemeğinizin tadını çıkarırken, bir zamanlar bu sokaklarda yankılanan eski Ordu sabahlarının dinginliğine ve akşamlarının huzuruna dokunursunuz.",
+    "stats": {
+      "years": {
+        "value": "15+",
+        "label": "Yıllık Deneyim"
+      },
+      "dishes": {
+        "value": "200+",
+        "label": "Özel Tarif"
+      },
+      "guests": {
+        "value": "50K+",
+        "label": "Mutlu Misafir"
+      }
+    }
+  },
+  "menu": {
+    "eyebrow": "Menümüz",
+    "title": "Lezzet Yolculuğu",
+    "subtitle": "Her biri özenle hazırlanan, mevsimsel ve taze malzemelerle oluşturulan özel menümüz",
+    "categories": {
+      "starters": {
+        "name": "Başlangıçlar",
+        "description": "Taze ve hafif tatlarla başlayan bir yolculuk"
+      },
+      "mains": {
+        "name": "Ana Yemekler",
+        "description": "Şefin özel hazırladığı asıl lezzetler"
+      },
+      "desserts": {
+        "name": "Tatlılar",
+        "description": "Geleneksel tatlıların modern yorumu"
+      },
+      "drinks": {
+        "name": "İçecekler",
+        "description": "Özel karışımlar ve seçkin şaraplar"
+      }
+    },
+    "cta": "Tüm Menüyü Gör"
+  },
+  "gallery": {
+    "eyebrow": "Galeri",
+    "title": "Görsel Bir Şölen",
+    "subtitle": "Alaz deneyiminden kareler"
+  },
+  "testimonials": {
+    "eyebrow": "Yorumlar",
+    "title": "Misafirlerimiz Ne Diyor?",
+    "reviews": [
+      {
+        "text": "Alaz, şimdiye kadar yemek yediğim en özel restoran. Her detay düşünülmüş, lezzetler muhteşem.",
+        "author": "Ahmet K.",
+        "role": "İş İnsanı"
+      },
+      {
+        "text": "Eşimle yıldönümümüzü burada kutladık. Atmosfer, servis ve yemekler kusursuzdu. Kesinlikle tekrar geleceğiz.",
+        "author": "Selin M.",
+        "role": "Mimar"
+      },
+      {
+        "text": "Profesyonel şeflerin ellerinden çıkan bu lezzetleri herkese tavsiye ederim. Unutulmaz bir akşamydı.",
+        "author": "Burak T.",
+        "role": "Gastronomi Yazarı"
+      }
+    ]
+  },
+  "contact": {
+    "eyebrow": "İletişim",
+    "title": "Bize Ulaşın",
+    "subtitle": "Rezervasyon ve bilgi için bizimle iletişime geçin",
+    "info": {
+      "address": {
+        "label": "Adres",
+        "value": "Alaz Restaurant, Lüks Mahallesi, Şefler Caddesi No: 42, İstanbul"
+      },
+      "phone": {
+        "label": "Telefon",
+        "value": "+90 (212) 555 00 00"
+      },
+      "email": {
+        "label": "E-posta",
+        "value": "info@alazrestaurant.com"
+      },
+      "hours": {
+        "label": "Çalışma Saatleri",
+        "weekdays": "Pazartesi - Perşembe: 12:00 - 23:00",
+        "weekends": "Cuma - Pazar: 12:00 - 00:00"
+      }
+    },
+    "cta": "Haritada Gör"
+  },
+  "floating": {
+    "whatsapp": "WhatsApp'tan Yaz",
+    "phone": "Hemen Ara",
+    "location": "Konum"
+  },
+  "footer": {
+    "tagline": "Ateşin sıcaklığı, lezzetin şiiri",
+    "links": {
+      "restaurant": "Restoran",
+      "hotel": "Otel",
+      "menu": "Menü",
+      "gallery": "Galeri",
+      "contact": "İletişim"
+    },
+    "social": "Bizi Takip Edin",
+    "copyright": "© {year} Alaz. Tüm hakları saklıdır."
+  },
+  "theme": {
+    "light": "Gündüz",
+    "dark": "Gece"
+  }
+}

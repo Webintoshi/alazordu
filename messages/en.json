@@ -1,0 +1,136 @@
+{
+  "metadata": {
+    "title": "Alaz Restaurant | Premium Gastronomic Experience",
+    "description": "Unique flavors, elegant ambiance, and unforgettable moments. At Alaz Restaurant, we transform gastronomy into art."
+  },
+  "nav": {
+    "restaurant": "Restaurant",
+    "hotel": "Hotel",
+    "gallery": "Gallery",
+    "contact": "Contact",
+    "menu": "Menu",
+    "about": "About"
+  },
+  "hero": {
+    "title": "ALAZ",
+    "subtitle": "Restaurant",
+    "tagline": "The warmth of fire, the poetry of flavor",
+    "scroll": "Discover"
+  },
+  "about": {
+    "eyebrow": "Our Story",
+    "title": "The Story of a Historic Mansion in the Heart of Ordu",
+    "description": "Located in the heart of Ordu, this historical mansion stands as a silent witness to the past, built in the early 1900s with the elegant wooden craftsmanship of the Black Sea region. It has witnessed the years of the national struggle from which Zaferimilli District takes its name and once served as one of the gathering places for the local community.",
+    "description2": "With its wooden beams, stone foundation, and hand-carved doors, the mansion carries the spirit of Ordu's traditional architecture into the present day. Once home to a merchant family, it has been carefully restored over the years while preserving its original soul—today welcoming guests as a warm stop that offers both history and flavor. This building is more than just walls; every corner whispers stories of the past. As you sip your coffee or enjoy your meal here, you touch the serenity of an old Ordu morning and the calm of its timeless evenings.",
+    "stats": {
+      "years": {
+        "value": "15+",
+        "label": "Years of Experience"
+      },
+      "dishes": {
+        "value": "200+",
+        "label": "Special Recipes"
+      },
+      "guests": {
+        "value": "50K+",
+        "label": "Happy Guests"
+      }
+    }
+  },
+  "menu": {
+    "eyebrow": "Our Menu",
+    "title": "Culinary Journey",
+    "subtitle": "Our specially crafted menu featuring seasonal and fresh ingredients",
+    "categories": {
+      "starters": {
+        "name": "Starters",
+        "description": "A journey beginning with fresh and light flavors"
+      },
+      "mains": {
+        "name": "Main Courses",
+        "description": "The main flavors specially prepared by our chef"
+      },
+      "desserts": {
+        "name": "Desserts",
+        "description": "Modern interpretation of traditional desserts"
+      },
+      "drinks": {
+        "name": "Beverages",
+        "description": "Special blends and selected wines"
+      }
+    },
+    "cta": "View Full Menu"
+  },
+  "gallery": {
+    "eyebrow": "Gallery",
+    "title": "A Visual Feast",
+    "subtitle": "Moments from the Alaz experience"
+  },
+  "testimonials": {
+    "eyebrow": "Testimonials",
+    "title": "What Our Guests Say",
+    "reviews": [
+      {
+        "text": "Alaz is the most special restaurant I've ever dined at. Every detail has been thought of, the flavors are magnificent.",
+        "author": "Ahmet K.",
+        "role": "Businessman"
+      },
+      {
+        "text": "We celebrated our anniversary here. The atmosphere, service, and food were flawless. We will definitely return.",
+        "author": "Selin M.",
+        "role": "Architect"
+      },
+      {
+        "text": "I recommend these flavors crafted by professional chefs to everyone. It was an unforgettable evening.",
+        "author": "Burak T.",
+        "role": "Food Critic"
+      }
+    ]
+  },
+  "contact": {
+    "eyebrow": "Contact",
+    "title": "Get in Touch",
+    "subtitle": "Contact us for reservations and information",
+    "info": {
+      "address": {
+        "label": "Address",
+        "value": "Alaz Restaurant, Luxury District, Chefs Avenue No: 42, Istanbul"
+      },
+      "phone": {
+        "label": "Phone",
+        "value": "+90 (212) 555 00 00"
+      },
+      "email": {
+        "label": "Email",
+        "value": "info@alazrestaurant.com"
+      },
+      "hours": {
+        "label": "Opening Hours",
+        "weekdays": "Monday - Thursday: 12:00 - 23:00",
+        "weekends": "Friday - Sunday: 12:00 - 00:00"
+      }
+    },
+    "cta": "View on Map"
+  },
+  "floating": {
+    "whatsapp": "Message on WhatsApp",
+    "phone": "Call Now",
+    "location": "Location"
+  },
+  "footer": {
+    "tagline": "The warmth of fire, the poetry of flavor",
+    "links": {
+      "restaurant": "Restaurant",
+      "hotel": "Hotel",
+      "menu": "Menu",
+      "gallery": "Gallery",
+      "contact": "Contact"
+    },
+    "social": "Follow Us",
+    "copyright": "© {year} Alaz. All rights reserved."
+  },
+  "theme": {
+    "light": "Day",
+    "dark": "Night"
+  }
+}
