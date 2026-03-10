@@ -13,7 +13,7 @@ const stories = [
     title: 'Video 1',
     duration: '0:15',
     description: '',
-    videoSrc: '/reels/video1.mp4',
+    videoSrc: '/Reels/video1.mp4',
     thumbnail: '',
   },
   {
@@ -21,7 +21,7 @@ const stories = [
     title: 'Video 2',
     duration: '0:30',
     description: '',
-    videoSrc: '/reels/video2.mp4',
+    videoSrc: '/Reels/video2.mp4',
     thumbnail: '',
   },
   {
@@ -29,7 +29,7 @@ const stories = [
     title: 'Video 3',
     duration: '0:20',
     description: '',
-    videoSrc: '/reels/video3.mp4',
+    videoSrc: '/Reels/video3.mp4',
     thumbnail: '',
   },
   {
@@ -37,7 +37,7 @@ const stories = [
     title: 'Video 4',
     duration: '0:25',
     description: '',
-    videoSrc: '/reels/video4.mp4',
+    videoSrc: '/Reels/video4.mp4',
     thumbnail: '',
   },
 ];
