@@ -14,6 +14,9 @@ import {
   ArrowRight
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { useLocale, useTranslations } from '@/lib/i18n-context';
+import Script from 'next/script';
+import { siteConfig, generateBreadcrumbSchema } from '@/lib/seo-config';
 
 const rooms = [
   {
@@ -103,6 +106,7 @@ function RoomCard({ room, index }: { room: typeof rooms[0]; index: number }) {
               "text-[var(--color-foreground)]",
               "hover:bg-white transition-colors"
             )}
+            aria-label="Önceki görsel"
           >
             <ChevronLeft className="w-5 h-5" />
           </button>
@@ -115,6 +119,7 @@ function RoomCard({ room, index }: { room: typeof rooms[0]; index: number }) {
               "text-[var(--color-foreground)]",
               "hover:bg-white transition-colors"
             )}
+            aria-label="Sonraki görsel"
           >
             <ChevronRight className="w-5 h-5" />
           </button>
@@ -182,17 +187,50 @@ function RoomCard({ room, index }: { room: typeof rooms[0]; index: number }) {
 }
 
 export default function HotelPage() {
+  const locale = useLocale();
+  const { t } = useTranslations();
+  const isTr = locale === 'tr';
+
+  const breadcrumbSchema = generateBreadcrumbSchema([
+    { name: isTr ? 'Ana Sayfa' : 'Home', url: isTr ? siteConfig.url : `${siteConfig.url}/en` },
+    { name: isTr ? 'Otel' : 'Hotel', url: isTr ? `${siteConfig.url}/hotel/` : `${siteConfig.url}/en/hotel/` },
+  ]);
+
   return (
-    <main className="min-h-screen bg-[var(--color-background)] pt-20">
-      <section className="section-padding bg-[var(--color-background)]">
-        <div className="container-wide">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
-            {rooms.map((room, index) => (
-              <RoomCard key={room.id} room={room} index={index} />
-            ))}
+    <>
+      <Script
+        id="breadcrumb-schema"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(breadcrumbSchema),
+        }}
+      />
+      <main className="min-h-screen bg-[var(--color-background)] pt-20">
+        <section className="section-padding bg-[var(--color-background)]">
+          <div className="container-wide">
+            {/* SEO Başlık */}
+            <div className="text-center mb-16">
+              <span className="text-small text-[var(--color-accent)] tracking-[0.2em] block mb-4">
+                {isTr ? 'KONAKLAMA' : 'ACCOMMODATION'}
+              </span>
+              <h1 className="text-display-lg font-display font-semibold text-[var(--color-foreground)]">
+                {isTr ? 'Odalarımız' : 'Our Rooms'}
+              </h1>
+              <p className="mt-4 text-[var(--color-foreground-secondary)] max-w-2xl mx-auto">
+                {isTr 
+                  ? 'Deniz manzaralı, konforlu odalarımızda unutulmaz bir konaklama deneyimi yaşayın.'
+                  : 'Experience an unforgettable stay in our comfortable sea view rooms.'}
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
+              {rooms.map((room, index) => (
+                <RoomCard key={room.id} room={room} index={index} />
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
-    </main>
+        </section>
+      </main>
+    </>
   );
 }
