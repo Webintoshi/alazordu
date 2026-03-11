@@ -142,6 +142,22 @@ export function Footer() {
             </button>
           </div>
         </div>
+
+        {/* Signature */}
+        <div className="mt-8 flex justify-center">
+          <a 
+            href="https://celebix.co" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="opacity-40 hover:opacity-70 transition-opacity duration-300"
+          >
+            <img 
+              src="/footer%20imza.svg" 
+              alt="Celebix" 
+              className="h-6 w-auto"
+            />
+          </a>
+        </div>
       </div>
     </footer>
   );
