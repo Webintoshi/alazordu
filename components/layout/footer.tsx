@@ -154,7 +154,7 @@ export function Footer() {
             <img 
               src="/footer%20imza.svg" 
               alt="Celebix" 
-              className="h-6 w-auto"
+              className="h-10 w-auto"
             />
           </a>
         </div>
