@@ -3,7 +3,7 @@
 import { useRef, useState, useEffect } from 'react';
 import { useTranslations } from '@/lib/i18n-context';
 import { motion, useInView } from 'framer-motion';
-import { Volume2, VolumeX, ChevronLeft, ChevronRight } from 'lucide-react';
+import { Volume2, VolumeX, ChevronLeft, ChevronRight, Play } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 // Video içerikleri - Buraya reels videolarınızı ekleyeceksiniz
@@ -47,24 +47,30 @@ interface StoryCardProps {
 }
 
 function StoryCard({ story }: StoryCardProps) {
+  const [isPlaying, setIsPlaying] = useState(false);
   const [isMuted, setIsMuted] = useState(true);
   const [progress, setProgress] = useState(0);
   const videoRef = useRef<HTMLVideoElement>(null);
 
-  // Otomatik oynatma ve loop için
+  // Oynatma durumunu yönet
   useEffect(() => {
     if (videoRef.current) {
-      videoRef.current.play().catch(() => {
-        // Otomatik oynatma engellenirse sessizde dene
-        videoRef.current!.muted = true;
-        videoRef.current!.play().catch(() => {});
-      });
+      if (isPlaying) {
+        videoRef.current.play().catch(() => {
+          // Otomatik oynatma engellenirse sessizde dene
+          videoRef.current!.muted = true;
+          setIsMuted(true);
+          videoRef.current!.play().catch(() => {});
+        });
+      } else {
+        videoRef.current.pause();
+      }
     }
-  }, []);
+  }, [isPlaying]);
 
   // Progress bar animasyonu
   useEffect(() => {
-    if (!videoRef.current) return;
+    if (!isPlaying || !videoRef.current) return;
     
     const updateProgress = () => {
       if (videoRef.current) {
@@ -75,7 +81,19 @@ function StoryCard({ story }: StoryCardProps) {
 
     videoRef.current.addEventListener('timeupdate', updateProgress);
     return () => videoRef.current?.removeEventListener('timeupdate', updateProgress);
-  }, []);
+  }, [isPlaying]);
+
+  const togglePlay = () => {
+    setIsPlaying(!isPlaying);
+  };
+
+  const handleEnded = () => {
+    setIsPlaying(false);
+    setProgress(0);
+    if (videoRef.current) {
+      videoRef.current.currentTime = 0;
+    }
+  };
 
   const hasVideo = story.videoSrc && story.videoSrc.length > 0;
 
@@ -93,13 +111,16 @@ function StoryCard({ story }: StoryCardProps) {
         {hasVideo ? (
           <video
             ref={videoRef}
-            className="w-full h-full object-cover transition-opacity duration-500"
+            className={cn(
+              'w-full h-full object-cover transition-opacity duration-500',
+              !isPlaying && 'opacity-0'
+            )}
             src={story.videoSrc}
             muted={isMuted}
             playsInline
-            autoPlay
-            loop
             poster={story.thumbnail}
+            onClick={togglePlay}
+            onEnded={handleEnded}
           />
         ) : null}
         
@@ -108,7 +129,7 @@ function StoryCard({ story }: StoryCardProps) {
           className={cn(
             'absolute inset-0 bg-gradient-to-br from-[var(--color-background-tertiary)] to-[var(--color-background-secondary)]',
             'dark:from-stone-700/50 dark:to-stone-800',
-            hasVideo && 'opacity-0'
+            isPlaying && hasVideo && 'opacity-0'
           )}
         >
           {/* Pattern Overlay */}
@@ -134,7 +155,7 @@ function StoryCard({ story }: StoryCardProps) {
               <div 
                 className={cn(
                   'h-full bg-[var(--color-accent)] transition-all duration-100',
-                  'transition-[width] duration-300'
+                  idx === story.id - 1 && isPlaying && 'transition-[width] duration-300'
                 )}
                 style={{ 
                   width: idx === story.id - 1 ? `${progress}%` : idx < story.id - 1 ? '100%' : '0%' 
@@ -179,6 +200,23 @@ function StoryCard({ story }: StoryCardProps) {
             style={{ width: `${progress}%` }}
           />
         </div>
+      </div>
+
+      {/* Center - Play Button */}
+      <div 
+        className={cn(
+          'absolute inset-0 flex items-center justify-center transition-opacity duration-300',
+          isPlaying && hasVideo ? 'opacity-0 group-hover:opacity-100' : 'opacity-100'
+        )}
+        onClick={togglePlay}
+      >
+        <motion.div 
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.95 }}
+          className="w-16 h-16 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center border border-white/30"
+        >
+          <Play className={cn("w-7 h-7 text-white ml-1", isPlaying && "opacity-0")} fill="currentColor" />
+        </motion.div>
       </div>
 
       {/* Hover Glow Effect */}
