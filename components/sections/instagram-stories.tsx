@@ -3,7 +3,7 @@
 import { useRef, useState, useEffect } from 'react';
 import { useTranslations } from '@/lib/i18n-context';
 import { motion, useInView } from 'framer-motion';
-import { Play, Volume2, VolumeX, ChevronLeft, ChevronRight } from 'lucide-react';
+import { Volume2, VolumeX, ChevronLeft, ChevronRight } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 // Video içerikleri - Buraya reels videolarınızı ekleyeceksiniz
@@ -44,38 +44,27 @@ const stories = [
 
 interface StoryCardProps {
   story: typeof stories[0];
-  isPlaying: boolean;
-  onPlay: () => void;
-  onPause: () => void;
-  onEnded: () => void;
 }
 
-function StoryCard({ story, isPlaying, onPlay, onPause, onEnded }: StoryCardProps) {
+function StoryCard({ story }: StoryCardProps) {
   const [isMuted, setIsMuted] = useState(true);
   const [progress, setProgress] = useState(0);
   const videoRef = useRef<HTMLVideoElement>(null);
 
-  // Oynatma durumunu yönet
+  // Otomatik oynatma ve loop için
   useEffect(() => {
     if (videoRef.current) {
-      if (isPlaying) {
-        videoRef.current.play().catch(() => {
-          // Otomatik oynatma engellenirse sessizde dene
-          videoRef.current!.muted = true;
-          setIsMuted(true);
-          videoRef.current!.play().catch(() => {});
-        });
-      } else {
-        videoRef.current.pause();
-        videoRef.current.currentTime = 0;
-        setProgress(0);
-      }
+      videoRef.current.play().catch(() => {
+        // Otomatik oynatma engellenirse sessizde dene
+        videoRef.current!.muted = true;
+        videoRef.current!.play().catch(() => {});
+      });
     }
-  }, [isPlaying]);
+  }, []);
 
   // Progress bar animasyonu
   useEffect(() => {
-    if (!isPlaying || !videoRef.current) return;
+    if (!videoRef.current) return;
     
     const updateProgress = () => {
       if (videoRef.current) {
@@ -86,15 +75,7 @@ function StoryCard({ story, isPlaying, onPlay, onPause, onEnded }: StoryCardProp
 
     videoRef.current.addEventListener('timeupdate', updateProgress);
     return () => videoRef.current?.removeEventListener('timeupdate', updateProgress);
-  }, [isPlaying]);
-
-  const togglePlay = () => {
-    if (isPlaying) {
-      onPause();
-    } else {
-      onPlay();
-    }
-  };
+  }, []);
 
   const hasVideo = story.videoSrc && story.videoSrc.length > 0;
 
@@ -112,16 +93,13 @@ function StoryCard({ story, isPlaying, onPlay, onPause, onEnded }: StoryCardProp
         {hasVideo ? (
           <video
             ref={videoRef}
-            className={cn(
-              'w-full h-full object-cover transition-opacity duration-500',
-              !isPlaying && 'opacity-0'
-            )}
+            className="w-full h-full object-cover transition-opacity duration-500"
             src={story.videoSrc}
             muted={isMuted}
             playsInline
+            autoPlay
+            loop
             poster={story.thumbnail}
-            onClick={togglePlay}
-            onEnded={onEnded}
           />
         ) : null}
         
@@ -130,7 +108,7 @@ function StoryCard({ story, isPlaying, onPlay, onPause, onEnded }: StoryCardProp
           className={cn(
             'absolute inset-0 bg-gradient-to-br from-[var(--color-background-tertiary)] to-[var(--color-background-secondary)]',
             'dark:from-stone-700/50 dark:to-stone-800',
-            isPlaying && hasVideo && 'opacity-0'
+            hasVideo && 'opacity-0'
           )}
         >
           {/* Pattern Overlay */}
@@ -156,8 +134,7 @@ function StoryCard({ story, isPlaying, onPlay, onPause, onEnded }: StoryCardProp
               <div 
                 className={cn(
                   'h-full bg-[var(--color-accent)] transition-all duration-100',
-                  idx < story.id - 1 && 'w-full',
-                  idx === story.id - 1 && isPlaying && 'transition-[width] duration-300'
+                  'transition-[width] duration-300'
                 )}
                 style={{ 
                   width: idx === story.id - 1 ? `${progress}%` : idx < story.id - 1 ? '100%' : '0%' 
@@ -192,22 +169,7 @@ function StoryCard({ story, isPlaying, onPlay, onPause, onEnded }: StoryCardProp
         </div>
       </div>
 
-      {/* Center - Play Button */}
-      <div 
-        className={cn(
-          'absolute inset-0 flex items-center justify-center transition-opacity duration-300',
-          isPlaying && hasVideo ? 'opacity-0 group-hover:opacity-100' : 'opacity-100'
-        )}
-        onClick={togglePlay}
-      >
-        <motion.div 
-          whileHover={{ scale: 1.1 }}
-          whileTap={{ scale: 0.95 }}
-          className="w-16 h-16 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center border border-white/30"
-        >
-          <Play className={cn("w-7 h-7 text-white ml-1", isPlaying && "opacity-0")} fill="currentColor" />
-        </motion.div>
-      </div>
+
 
       {/* Progress Bar Only */}
       <div className="absolute bottom-0 left-0 right-0 p-4">
@@ -235,7 +197,6 @@ export function InstagramStories() {
   
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
-  const [playingId, setPlayingId] = useState<number | null>(null);
 
   // Ekran boyutunu kontrol et
   useEffect(() => {
@@ -245,54 +206,18 @@ export function InstagramStories() {
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
-  // Section görünür olduğunda ilk videoyu oynat
-  useEffect(() => {
-    if (isInView && playingId === null) {
-      setPlayingId(1);
-    }
-  }, [isInView]);
-
-  const handlePlay = (id: number) => {
-    setPlayingId(id);
-  };
-
-  const handlePause = () => {
-    setPlayingId(null);
-  };
-
-  const handleEnded = () => {
-    // Video bittiğinde sonrakine geç
-    const currentIdx = stories.findIndex(s => s.id === playingId);
-    if (currentIdx < stories.length - 1) {
-      setPlayingId(stories[currentIdx + 1].id);
-      // Mobil ise scroll yap
-      if (isMobile) {
-        setCurrentIndex(currentIdx + 1);
-      }
-    } else {
-      // Son video bittiğinde başa dön
-      setPlayingId(1);
-      if (isMobile) {
-        setCurrentIndex(0);
-      }
-    }
-  };
-
   const goToSlide = (index: number) => {
     setCurrentIndex(index);
-    setPlayingId(stories[index].id);
   };
 
   const goToPrev = () => {
     const newIndex = Math.max(currentIndex - 1, 0);
     setCurrentIndex(newIndex);
-    setPlayingId(stories[newIndex].id);
   };
 
   const goToNext = () => {
     const newIndex = Math.min(currentIndex + 1, stories.length - 1);
     setCurrentIndex(newIndex);
-    setPlayingId(stories[newIndex].id);
   };
 
   return (
@@ -328,13 +253,7 @@ export function InstagramStories() {
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: (story.id - 1) * 0.1, ease: [0.16, 1, 0.3, 1] }}
             >
-              <StoryCard 
-                story={story} 
-                isPlaying={playingId === story.id}
-                onPlay={() => handlePlay(story.id)}
-                onPause={handlePause}
-                onEnded={handleEnded}
-              />
+              <StoryCard story={story} />
             </motion.div>
           ))}
         </div>
@@ -355,13 +274,7 @@ export function InstagramStories() {
                   currentIndex === index ? 'scale-100' : 'scale-95 opacity-80'
                 )}
               >
-                <StoryCard 
-                  story={story} 
-                  isPlaying={playingId === story.id}
-                  onPlay={() => handlePlay(story.id)}
-                  onPause={handlePause}
-                  onEnded={handleEnded}
-                />
+                <StoryCard story={story} />
               </div>
             ))}
           </div>
