@@ -3,7 +3,6 @@
 import { useRef } from 'react';
 import Link from 'next/link';
 import { useLocale, useTranslations } from '@/lib/i18n-context';
-import { PlaceholderImage } from '@/components/shared/placeholder-image';
 import { motion, useInView } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 import { cn } from '@/lib/utils';
@@ -70,12 +69,10 @@ export function RestaurantMenu() {
               >
                 {/* Image */}
                 <div className="relative aspect-[3/4] overflow-hidden">
-                  <PlaceholderImage
-                    number={category.placeholder}
+                  <img
+                    src="/g%C3%B6rsel%20i%C3%A7erikler/lezzet%20yolculugu.png"
                     alt={t(`menu.categories.${category.id}.name`)}
-                    aspectRatio="auto"
-                    className="w-full h-full transition-transform duration-700 group-hover:scale-110"
-                    variant={index < 2 ? 'light' : 'dark'}
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                   />
                   
                   {/* Gradient Overlay */}
