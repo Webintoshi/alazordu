@@ -44,7 +44,7 @@ export function Hero() {
             <img
               src="/g%C3%B6rsel%20i%C3%A7erikler/alazordu%20hero%20banner.jpg"
               alt="Alaz Restaurant"
-              className="w-full h-full object-cover object-top"
+              className="w-full h-full object-cover object-[center_30%]"
             />
           </div>
         </motion.div>
