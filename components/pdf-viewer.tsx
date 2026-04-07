@@ -167,7 +167,7 @@ export function PDFViewer() {
             </div>
           )}
           <Document
-            file="/ALAZ%20MEN%C3%9C.pdf"
+            file="/Alaz%20Men%C3%BC%20TASLAK%20(F%C4%B0YATLI).pdf"
             onLoadSuccess={onDocumentLoadSuccess}
             onLoadError={onDocumentLoadError}
             loading={null}
@@ -208,7 +208,7 @@ export function PDFViewer() {
                     : "ring-1 ring-[var(--color-border)] opacity-60 hover:opacity-100 hover:ring-[var(--color-accent-hover)]"
                 )}
               >
-                <Document file="/ALAZ%20MEN%C3%9C.pdf" loading={null}>
+                <Document file="/Alaz%20Men%C3%BC%20TASLAK%20(F%C4%B0YATLI).pdf" loading={null}>
                   <Page
                     pageNumber={pageNum}
                     scale={0.12}
