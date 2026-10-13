@@ -1,6 +1,7 @@
 'use client';
 
-import { createContext, useContext, useState, ReactNode } from 'react';
+import { createContext, useContext, ReactNode } from 'react';
+import { usePathname } from 'next/navigation';
 import tr from '@/messages/tr.json';
 import en from '@/messages/en.json';
 
@@ -34,10 +35,12 @@ export function I18nProvider({
   children: ReactNode; 
   initialLocale?: Locale;
 }) {
-  const [locale, setLocaleState] = useState<Locale>(initialLocale);
+  const pathname = usePathname();
+  const locale: Locale = /^\/en(?:\/|$)/.test(pathname)
+    ? 'en'
+    : /^\/tr(?:\/|$)/.test(pathname) ? 'tr' : initialLocale;
 
   const setLocale = (newLocale: Locale) => {
-    setLocaleState(newLocale);
     // Update URL without page reload
     const currentPath = window.location.pathname;
     const newPath = currentPath.replace(/^\/(tr|en)/, `/${newLocale}`);

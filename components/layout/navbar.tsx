@@ -27,7 +27,6 @@ export function Navbar() {
     
     // Ana sayfa değilse scroll kontrolü gerekmez
     if (!isHomePage) {
-      setIsScrolled(true);
       return;
     }
 
@@ -65,6 +64,10 @@ export function Navbar() {
     { href: `/${locale}/menu`, label: t('nav.menu') },
     { href: `/${locale}/hotel`, label: t('nav.hotel') },
     { href: `/${locale}/contact`, label: t('nav.contact') },
+  ];
+  const mobileNavLinks = [
+    ...navLinks,
+    { href: `/${locale}/sustainability/`, label: t('nav.sustainability') },
   ];
 
   return (
@@ -154,8 +157,9 @@ export function Navbar() {
 
       {/* Mobile Menu Overlay */}
       <div
+        data-lenis-prevent
         className={cn(
-          'fixed inset-0 z-40 lg:hidden transition-all duration-500',
+          'fixed inset-0 z-40 overflow-y-auto overscroll-contain lg:hidden transition-all duration-500',
           isMobileMenuOpen 
             ? 'opacity-100 pointer-events-auto' 
             : 'opacity-0 pointer-events-none'
@@ -163,19 +167,19 @@ export function Navbar() {
       >
         {/* Backdrop */}
         <div 
-          className="absolute inset-0 bg-[var(--color-background)]/95 backdrop-blur-xl"
+          className="fixed inset-0 bg-[var(--color-background)]/95 backdrop-blur-xl"
           onClick={() => setIsMobileMenuOpen(false)}
         />
         
         {/* Menu Content */}
-        <div className="relative h-full flex flex-col items-center justify-center gap-8 p-8">
-          {navLinks.map((link, index) => (
+        <div className="relative min-h-full flex flex-col items-center justify-center gap-5 px-6 pt-32 pb-8 md:pt-36">
+          {mobileNavLinks.map((link, index) => (
             <Link
               key={link.href}
               href={link.href}
               onClick={() => setIsMobileMenuOpen(false)}
               className={cn(
-                'text-3xl md:text-4xl font-display font-medium text-[var(--color-foreground)]',
+                'shrink-0 text-center text-3xl md:text-4xl font-display font-medium text-[var(--color-foreground)]',
                 'transition-all duration-500 hover:text-[var(--color-accent)]',
                 isMobileMenuOpen 
                   ? 'translate-y-0 opacity-100' 
@@ -190,13 +194,13 @@ export function Navbar() {
           {/* Mobile Actions */}
           <div 
             className={cn(
-              'flex items-center gap-6 mt-8 pt-8 border-t border-[var(--color-border)]',
+              'flex shrink-0 items-center gap-6 mt-4 pt-6 border-t border-[var(--color-border)]',
               'transition-all duration-500',
               isMobileMenuOpen 
                 ? 'translate-y-0 opacity-100' 
                 : 'translate-y-8 opacity-0'
             )}
-            style={{ transitionDelay: '400ms' }}
+            style={{ transitionDelay: `${mobileNavLinks.length * 100}ms` }}
           >
             <LanguageSwitcher />
             <div className="w-px h-6 bg-[var(--color-border)]" />

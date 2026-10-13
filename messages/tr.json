@@ -9,7 +9,8 @@
     "gallery": "Galeri",
     "contact": "İletişim",
     "menu": "Menü",
-    "about": "Hakkımızda"
+    "about": "Hakkımızda",
+    "sustainability": "Sürdürülebilirlik"
   },
   "hero": {
     "title": "ALAZ",
@@ -124,7 +125,8 @@
       "hotel": "Otel",
       "menu": "Menü",
       "gallery": "Galeri",
-      "contact": "İletişim"
+      "contact": "İletişim",
+      "sustainability": "Sürdürülebilirlik"
     },
     "social": "Bizi Takip Edin",
     "copyright": "© {year} Alaz. Tüm hakları saklıdır."

@@ -36,5 +36,21 @@ export default function sitemap(): MetadataRoute.Sitemap {
     });
   });
 
+  // Sustainability pages use the current live domain and locale-prefixed routes.
+  ['tr', 'en'].forEach((locale) => {
+    sitemap.push({
+      url: `https://alazordu.com/${locale}/sustainability/`,
+      lastModified: new Date(),
+      changeFrequency: 'yearly',
+      priority: 0.7,
+      alternates: {
+        languages: {
+          tr: 'https://alazordu.com/tr/sustainability/',
+          en: 'https://alazordu.com/en/sustainability/',
+        },
+      },
+    });
+  });
+
   return sitemap;
 }

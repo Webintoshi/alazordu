@@ -15,6 +15,7 @@ export function Footer() {
     { href: `/${locale}/menu`, label: 'Menü' },
     { href: `/${locale}/hotel`, label: 'Otel' },
     { href: `/${locale}/contact`, label: 'İletişim' },
+    { href: `/${locale}/sustainability/`, label: t('footer.links.sustainability') },
   ];
 
   return (

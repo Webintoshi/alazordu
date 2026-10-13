@@ -9,7 +9,8 @@
     "gallery": "Gallery",
     "contact": "Contact",
     "menu": "Menu",
-    "about": "About"
+    "about": "About",
+    "sustainability": "Sustainability"
   },
   "hero": {
     "title": "ALAZ",
@@ -124,7 +125,8 @@
       "hotel": "Hotel",
       "menu": "Menu",
       "gallery": "Gallery",
-      "contact": "Contact"
+      "contact": "Contact",
+      "sustainability": "Sustainability"
     },
     "social": "Follow Us",
     "copyright": "© {year} Alaz. All rights reserved."
